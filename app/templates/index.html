@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Papan Stiker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body class="bg-gray-900 font-sans p-4 md:p-8 text-gray-200">
+    <div
+      class="max-w-6xl mx-auto bg-gray-800 p-6 rounded-lg shadow-xl shadow-indigo-500/10"
+    >
+      <h1
+        class="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 mb-4 uppercase tracking-wider"
+      >
+        Papan Stiker
+      </h1>
+
+      <p class="text-center text-gray-400 mb-6" id="instruction-text">
+        Pilih gambar untuk ditambahkan ke papan.
+      </p>
+
+      <div
+        class="flex flex-col md:flex-row gap-4 mb-4 items-center justify-center"
+      >
+        <input type="file" id="upload-image-input" accept="image/*" />
+
+        <label
+          for="upload-image-input"
+          id="upload-label"
+          class="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-indigo-500 focus-visible:ring-4 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800"
+        >
+          Pilih Gambar...
+        </label>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mb-6 justify-center">
+        <button
+          id="save-btn"
+          class="bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hidden transition-all duration-300 transform hover:scale-105 hover:bg-green-500 focus-visible:ring-4 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 disabled:opacity-50 disabled:transform-none"
+          disabled
+        >
+          Simpan Stiker
+        </button>
+        <button
+          id="cancel-btn"
+          class="bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hidden transition-all duration-300 transform hover:scale-105 hover:bg-gray-500 focus-visible:ring-4 focus-visible:ring-gray-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 disabled:opacity-50 disabled:transform-none"
+          disabled
+        >
+          Batal
+        </button>
+      </div>
+
+      <div id="canvas-wrapper" class="canvas-container">
+        <canvas id="sticker-canvas" width="3840" height="2160"></canvas>
+      </div>
+
+      <div
+        id="loading-indicator"
+        class="text-center text-gray-500 mt-4 font-semibold hidden"
+      >
+        Memuat papan stiker...
+      </div>
+
+      <div id="user-info" class="text-center text-xs text-gray-500 mt-4">
+        Menghubungkan ke server...
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
